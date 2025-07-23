@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Civil Service Exam Practice Test 8</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    .question {
+      margin-bottom: 20px;
+    }
+    .choices li {
+      list-style: none;
+      margin: 5px 0;
+    }
+    .result {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+    .correct-answer {
+      color: green;
+      font-weight: bold;
+    }
+    .social-link {
+      margin-top: 20px;
+      font-size: 16px;
+    }
+    .social-link a {
+      color: #3b5998;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .advertisement {
+      margin-top: 30px;
+      padding: 15px;
+      background-color: #f9f9f9;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Civil Service Exam Practice Test 8</h1>
+<p><strong>Created by:</strong> CSE Learning Essentials</p>
+<p><strong>Section 1:</strong> Verbal Ability - Part 1: Word Meaning</p>
+<p><strong>Passing Score:</strong> 8/10</p>
+<p><em>Direction:</em> Choose the meaning of the highlighted word based on the context.</p>
+
+<form id="quizForm">
+  <script>
+    const questions = [
+      {
+        text: "1. Aptly tagged a DISSIDENT faculty member, teacher Gilbert has had a long history of breaking rules and challenging the established regulation in their school.",
+        options: [
+          "A) professional",
+          "B) rebellious",
+          "C) assertive",
+          "D) keen-minded",
+          "E) generous"
+        ],
+        correct: "B"
+      },
+      {
+        text: "2. The woman’s testimony is REPLETE with inconsistencies and contradictions, making it difficult to ascertain the truth of her account.",
+        options: [
+          "A) false or counterfeit",
+          "B) lacking or wanting",
+          "C) filled-up or overflowing",
+          "D) highlighted or emphasized",
+          "E) repetitive or irritating"
+        ],
+        correct: "C"
+      },
+      {
+        text: "3. Your legal department should impose PUNITIVE measures in order to deter future violations of company policies and ensure compliance among all employees.",
+        options: [
+          "A) desiring action",
+          "B) meant to quell",
+          "C) deserving praise",
+          "D) intended to punish",
+          "E) regulate positively"
+        ],
+        correct: "D"
+      },
+      {
+        text: "4. The team COALESCED around a shared vision for the project, pooling their diverse skills and perspectives to achieve remarkable results.",
+        options: [
+          "A) collided",
+          "B) appeared",
+          "C) converged",
+          "D) degenerated",
+          "E) regulated"
+        ],
+        correct: "C"
+      },
+      {
+        text: "5. Her LANGUID movements on stage conveyed a sense of melancholy that captivated the audience.",
+        options: [
+          "A) graceful",
+          "B) energetic",
+          "C) weak",
+          "D) dramatic",
+          "E) joyful"
+        ],
+        correct: "C"
+      },
+      {
+        text: "6. The CRYPTIC message left by the thief contained a series of symbols and codes that puzzled investigators for weeks.",
+        options: [
+          "A) humorous",
+          "B) clear",
+          "C) mysterious",
+          "D) friendly",
+          "E) honest"
+        ],
+        correct: "C"
+      },
+      {
+        text: "7. The professor’s lectures were so ERUDITE that only the most advanced students could fully grasp the material.",
+        options: [
+          "A) irrelevant",
+          "B) scholarly",
+          "C) confusing",
+          "D) entertaining",
+          "E) brief"
+        ],
+        correct: "B"
+      },
+      {
+        text: "8. Despite the CEO’s attempts to appear transparent, his OBLIQUE responses during the press conference only deepened public suspicion.",
+        options: [
+          "A) dishonest",
+          "B) straightforward",
+          "C) indirect",
+          "D) emotional",
+          "E) urgent"
+        ],
+        correct: "C"
+      },
+      {
+        text: "9. The committee’s decision was seen as a REBUKE to those who had advocated for rapid, untested reforms.",
+        options: [
+          "A) warning",
+          "B) compliment",
+          "C) rejection",
+          "D) criticism",
+          "E) instruction"
+        ],
+        correct: "D"
+      },
+      {
+        text: "10. Although initially ENTHRALLED by the charismatic speaker, the audience gradually began to question the substance behind his words.",
+        options: [
+          "A) annoyed",
+          "B) persuaded",
+          "C) skeptical",
+          "D) distracted",
+          "E) captivated"
+        ],
+        correct: "E"
+      }
+    ];
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById("quizForm");
+      questions.forEach((q, index) => {
+        const div = document.createElement("div");
+        div.classList.add("question");
+
+        const p = document.createElement("p");
+        p.innerHTML = `<strong>${q.text}</strong>`;
+        div.appendChild(p);
+
+        const ul = document.createElement("ul");
+        ul.classList.add("choices");
+
+        q.options.forEach((opt, i) => {
+          const li = document.createElement("li");
+          const letter = opt.charAt(0);
+          li.innerHTML = `<input type="radio" name="q${index+1}" value="${letter}"> ${opt}`;
+          ul.appendChild(li);
+        });
+
+        const exp = document.createElement("p");
+        exp.id = `explanation${index+1}`;
+
+        div.appendChild(ul);
+        div.appendChild(exp);
+        form.insertBefore(div, form.lastElementChild);
+      });
+
+      const submitBtn = document.createElement("button");
+      submitBtn.type = "button";
+      submitBtn.textContent = "Submit";
+      submitBtn.onclick = checkAnswers;
+      form.appendChild(submitBtn);
+    });
+
+    function checkAnswers() {
+      let score = 0;
+      let result = document.getElementById("result");
+      result.innerHTML = "";
+
+      questions.forEach((q, index) => {
+        const name = `q${index+1}`;
+        const selected = document.querySelector(`input[name="${name}"]:checked`);
+        const correct = q.correct;
+        const explanation = document.getElementById(`explanation${index+1}`);
+
+        if (selected && selected.value === correct) {
+          score++;
+        }
+
+        explanation.innerHTML = `<span class="correct-answer">Correct Answer: ${correct}</span>`;
+      });
+
+      result.innerHTML = score >= 8
+        ? `You passed! Your score is: ${score}/10`
+        : `You failed. Your score is: ${score}/10`;
+      result.style.color = score >= 8 ? "green" : "red";
+    }
+  </script>
+</form>
+
+<div id="result" class="result"></div>
+
+  <div class="social-link">
+    <p>Follow us on <a href="https://www.facebook.com/cselearningessentials/" target="_blank">Facebook</a> for more updates!</p>
+    <p>Subscribe to our YouTube Channel <a href="https://www.youtube.com/@cselearningessentialsph2023" target="_blank">here</a>!</p>
+  </div>
+
+  <div class="advertisement">
+    <img src="images/advertisement.png" alt="Civil Service E-book" style="width:100%; max-width:400px; display:block; margin:0 auto 15px auto; border-radius:5px;">
+    <p>Avail our latest Civil Service Exam Reviewer E-books. Direct message us for more details!</p>
+  </div>
+
+</body>
+</html>
